@@ -32,4 +32,7 @@ constexpr auto inf = std::numeric_limits<float>::infinity();
 extern const Graph test_graph;
 extern const SparseGraph sparse_test_graph;
 
+// Graphs
+extern Graph GraphStoreCustomerLocation;
+
 #endif

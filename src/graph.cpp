@@ -71,5 +71,12 @@ void print_graph(const SparseGraph &graph, bool as_url) {
   }
 }
 
-void print_graph(const Graph &graph, bool as_url) { print_graph(_graph_to_sparse(graph), as_url); }
+void print_graph(const Graph &graph, bool as_url) { 
+  print_graph(_graph_to_sparse(graph), as_url);
+ }
+
+
+ Graph GraphStoreCustomerLocation(11, std::vector<float>(11,inf));
+
+
 
