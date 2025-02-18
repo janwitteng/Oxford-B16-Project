@@ -11,6 +11,9 @@ include_directories(include)
 # Source files
 set(SOURCES
     src/graph.cpp
+    src/shortest_paths_dijkstra.cpp
+    src/order.cpp
+    src/delivery.cpp
     src/main.cpp
 )
 
