@@ -1,5 +1,5 @@
-#ifndef HEAP
-#define HEAP
+#ifndef HEAP_HPP
+#define HEAP_HPP
 
 #include <cassert>
 #include <utility>

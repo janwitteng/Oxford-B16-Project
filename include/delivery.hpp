@@ -1,5 +1,5 @@
-#ifndef DELIVERY_RUN_HPP
-#define DELIVERY_RUN_HPP
+#ifndef DELIVERY_HPP
+#define DELIVERY_HPP
 
 #include <graph.hpp>
 #include <order.hpp>

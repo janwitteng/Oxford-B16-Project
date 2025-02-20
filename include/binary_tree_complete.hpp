@@ -1,5 +1,5 @@
-#ifndef BINARY_TREE_COMPLETE
-#define BINARY_TREE_COMPLETE
+#ifndef BINARY_TREE_COMPLETE_HPP
+#define BINARY_TREE_COMPLETE_HPP
 
 #include <limits>
 #include <vector>

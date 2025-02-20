@@ -1,5 +1,5 @@
-#ifndef ALGORITHMS
-#define ALGORITHMS
+#ifndef SHORTEST_PATH_DIJKSTRA
+#define SHORTEST_PATH_DIJKSTRA
 
 #include "graph.hpp"
 

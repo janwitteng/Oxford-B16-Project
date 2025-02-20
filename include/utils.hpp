@@ -1,5 +1,5 @@
-#ifndef __utils__
-#define __utils__
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 #include <iostream>
 #include <vector>

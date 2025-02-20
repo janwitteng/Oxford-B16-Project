@@ -1,5 +1,5 @@
-#ifndef PRIORITY_QUEUE
-#define PRIORITY_QUEUE
+#ifndef PRIORITY_QUEUE_HPP
+#define PRIORITY_QUEUE_HPP
 
 #include "heap.hpp"
 #include <vector>
