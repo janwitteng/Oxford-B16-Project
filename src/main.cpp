@@ -8,59 +8,63 @@
 #include <utils.hpp>
 
 int main() {
-  print_graph(test_graph);
-  print_graph(sparse_test_graph);
+  // Print initial test graphs
+  // print_graph(test_graph);
+  // print_graph(sparse_test_graph);
 
-  // Create a random number generator and seed it with a random device
+  // Set up a random number generator (using a fixed seed for reproducibility)
   std::random_device rd;
   std::mt19937 gen(4);
 
-  // Define a distribution to generate floats between 0.0 and 1.0
+  // Define a distribution to generate float values between 0.0 and 1.0
   std::uniform_real_distribution<float> dis(0.0f, 1.0f);
 
-  // a) connectivity between customer and store
+  // (a) Establish connectivity between the store and customer locations
+  // For the first half of the customers, set direct connectivity with random weights
   for (int i = 1; i < std::floor(GraphStoreCustomerLocation.size() / 2); i++) {
-    // Round the random variable to the second digit
+    // Generate a random weight rounded to two decimal places
     GraphStoreCustomerLocation[0][i] = std::round(dis(gen) * 100) / 100;
   }
-  //  ii indirect connection
+  
+  // (a-ii) Set up indirect connections between specific nodes
   GraphStoreCustomerLocation[1][5] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[2][6] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[3][7] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[4][8] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[4][9] = std::round(dis(gen) * 100) / 100;
-
   GraphStoreCustomerLocation[5][10] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[6][10] = std::round(dis(gen) * 100) / 100;
   GraphStoreCustomerLocation[7][10] = std::round(dis(gen) * 100) / 100;
 
-  // b)
-  // i: Write an algorithm that computes the shortest path between the store
-  // and customers' houses.
+  // (b) Compute and display the shortest path between the store and customer houses
 
+  // Print the updated graph with store-customer connections
+  // Visualise graph: https://dreampuf.github.io/GraphvizOnline
   print_graph(GraphStoreCustomerLocation);
 
+  // Compute shortest paths from the store (node 0) using Dijkstra's algorithm
   std::vector<hop_t> res = dijkstra(GraphStoreCustomerLocation, 0);
   print(res);
-  std::vector<int> _shortestPath = getPath(res, 10);
-  std::cout << _shortestPath << std::endl;
 
-  // ii: Delivery plan
-  // std::uniform_int_distribution<int> basketDis(0,2);
+  // Retrieve and print the shortest path to customer node 10
+  std::vector<int> shortestPath = getPath(res, 10);
+  std::cout << shortestPath << std::endl;
+
+  // (c) Generate and display a delivery plan based on customer orders
+
+  // Generate a list of orders for 10 customers
   std::vector<Order> orders = generateOrders(10);
-
-
-  for (Order &order : orders) {
-    std::cout << "Customer " << order.customerId << " orders " << order.numBaskets
-              << " basket(s).\n";
+  for (const Order &order : orders) {
+    std::cout << "Customer " << order.customerId << " orders " 
+              << order.numBaskets << " basket(s)." << std::endl;
   }
 
-
-  // class implementation of the delivey
+  // Create a delivery plan using the computed shortest paths and orders
   DeliveryPlan delivery(orders);
   std::vector<Delivery> deliveryPlan = delivery.createDeliveryPlan(res);
   std::vector<DeliveryRun> deliveryRun = delivery.createDeliveryRun();
 
+  // Print the final delivery run plan
   printDeliveryRun(deliveryRun);
 
   return 0;
