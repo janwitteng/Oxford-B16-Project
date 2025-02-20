@@ -22,15 +22,15 @@ Link
 `g++ graph.o shortest_paths_dijkstra.o order.o delivery.o main.o -o graph_program`
 
 ### Compile using cmake
-Create a build directory and navigate into it:
+Create a build directory and navigate into it:  
 `mkdir build`  
 `cd build`  
 
-Configure the project:
+Configure the project:  
 `cmake ..`  
 
-If you need to manually set the compiler:
+If you need to manually set the compiler:   
 `cmake .. -DCMAKE_CXX_COMPILER=g++`  
 
-Build the project (cross-platform):
+Build the project (cross-platform):     
 `cmake --build .`
