@@ -18,14 +18,6 @@ int main() {
   // Define a distribution to generate floats between 0.0 and 1.0
   std::uniform_real_distribution<float> dis(0.0f, 1.0f);
 
-  /*
-  // direct conncetion, all customer are directly connected to the store
-  for (int i = 0; i < GraphStoreCustomerLocation.size(); i++) {
-    // Round the random variable to the second digit
-    GraphStoreCustomerLocation[0][i] = std::round(dis(gen) * 100) / 100;
-  }
-  */
-
   // a) connectivity between customer and store
   for (int i = 1; i < std::floor(GraphStoreCustomerLocation.size() / 2); i++) {
     // Round the random variable to the second digit
@@ -57,71 +49,12 @@ int main() {
   // std::uniform_int_distribution<int> basketDis(0,2);
   std::vector<Order> orders = generateOrders(10);
 
-  // struct Order {
-  //   int customerId;
-  //   int numBaskets;
-  // };
-  // std::vector<Order> orders;
-
-  // for (int i = 1; i <= 10; i++) {
-  //   Order o;
-  //   o.customerId = i;
-  //   o.numBaskets = basketDis(gen);
-  //   orders.push_back(o);
-  // }
 
   for (Order &order : orders) {
     std::cout << "Customer " << order.customerId << " orders " << order.numBaskets
               << " basket(s).\n";
   }
 
-  /* explictly written code
-
-  // loop through
-  std::vector<Delivery> deliveryPlan;
-  std::vector<int> shortestPath;
-  for (Order &order : orders) {
-    // std::vector<hop_t> res = dijkstra(GraphStoreCustomerLocation, 0);
-    shortestPath = getPath(res, order.customerId);
-    Delivery d{order.customerId, shortestPath, res[order.customerId].weight, order.numBaskets};
-    deliveryPlan.push_back(d);
-  }
-
-  // sort deliveryPlan
-  std::sort(deliveryPlan.begin(), deliveryPlan.end(), compareDistance);
-
-  // delivery run
-  std::vector<DeliveryRun> runs;
-  DeliveryRun currentRun;
-  currentRun.totalBaskets = 0;
-
-  for (Delivery &deliver : deliveryPlan) {
-    if (deliver.numBaskets == 0) {
-      continue;
-    }
-    if (currentRun.totalBaskets + deliver.numBaskets > 3) {
-      runs.push_back(currentRun);
-      currentRun.deliveries.clear();
-      currentRun.totalBaskets = 0;
-    }
-    currentRun.deliveries.push_back(deliver);
-    currentRun.totalBaskets += deliver.numBaskets;
-  }
-
-  if (!currentRun.deliveries.empty()) {
-    runs.push_back(currentRun);
-  }
-
-  for (const auto &run : runs) {
-    std::cout << "Delivery Run (Total baskets: " << run.totalBaskets << "):\n";
-    for (const Delivery &deliv : run.deliveries) {
-      std::cout << "  Customer " << deliv.customerId << " (Baskets: " << deliv.numBaskets
-                << ", Distance: " << deliv.distance << ", Route: " << deliv.route << ")\n";
-    }
-    std::cout << std::endl;
-  }
-
-  */
 
   // class implementation of the delivey
   DeliveryPlan delivery(orders);
